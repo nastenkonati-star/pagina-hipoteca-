@@ -19,15 +19,20 @@ export default function Chatbot() {
     // Simple simulated logic
     setTimeout(() => {
       let response = "Interesante. Te gustaría que te derive con un asesor humano para hablar específicamente sobre eso?";
+      let showWppButton = true;
+
       if (userInput.includes("tasa") || userInput.includes("interés")) {
         response = "Manejamos tasas fijas en dólares entre el 12% y 14% anual. ¿Te gustaría simular un crédito?";
+        showWppButton = false;
       } else if (userInput.includes("requisito")) {
         response = "Los requisitos principales son una propiedad como garantía y demostrar ingresos básicos. ¿Tenés propiedad propia?";
+        showWppButton = false;
       } else if (userInput.includes("plazo")) {
         response = "Ofrecemos plazos de hasta 10 años, adaptados a tu capacidad de pago.";
+        showWppButton = true;
       }
       
-      setMessages(prev => [...prev, { role: "bot", text: response }]);
+      setMessages(prev => [...prev, { role: "bot", text: response, isWppCta: showWppButton }]);
     }, 1000);
   };
 
@@ -57,8 +62,8 @@ export default function Chatbot() {
             </div>
 
             <div className="h-80 overflow-y-auto p-6 space-y-4 bg-slate-50">
-              {messages.map((m, i) => (
-                <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+              {messages.map((m: any, i) => (
+                <div key={i} className={`flex flex-col ${m.role === "user" ? "items-end" : "items-start"}`}>
                   <div className={`max-w-[80%] p-4 rounded-2xl text-sm ${
                     m.role === "user" 
                       ? "bg-primary text-white rounded-tr-none" 
@@ -66,6 +71,16 @@ export default function Chatbot() {
                   }`}>
                     {m.text}
                   </div>
+                  {m.isWppCta && (
+                    <a 
+                      href="https://wa.me/5491156911406"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-green-600 transition-colors"
+                    >
+                      Hablar por WhatsApp
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

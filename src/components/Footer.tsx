@@ -45,7 +45,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-gray-500">
                 <Phone size={18} className="text-primary" />
-                +54 9 11 1234 5678
+                +54 9 11 5691 1406
               </li>
               <li className="flex items-center gap-3 text-gray-500">
                 <MapPin size={18} className="text-primary" />
@@ -78,7 +78,7 @@ export default function Footer() {
 
       {/* Persistent WhatsApp CTA */}
       <a
-        href="https://wa.me/5491112345678"
+        href="https://wa.me/5491156911406"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center group"
